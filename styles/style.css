@@ -13,3 +13,13 @@ hr.my-2 {
 .card {
     margin-bottom: 20px;
 }
+
+.card-body .label {
+    background-color: #337ab7;
+    color: #fff;
+    padding: 5px;
+}
+
+.card-body .well {
+    margin-bottom: 20px;
+}
