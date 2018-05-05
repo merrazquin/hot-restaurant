@@ -8,6 +8,7 @@ const express = require("express"),
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use('/styles', express.static('styles'))
 
 // -------------------- CONNECTION TO DATA FILES -------------------------
 // Requires the data / waitlist and current reservations files
