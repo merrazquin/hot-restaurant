@@ -9,3 +9,7 @@ hr.my-2 {
 .footer a {
     color: #337ab7;
 }
+
+.card {
+    margin-bottom: 20px;
+}
