@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
 
 </head>
 
@@ -53,7 +53,7 @@
             <div class="container">
                 <p>Control panel</p>
                 <p>
-                    <a href="#">Clear tables</a> |
+                    <a href="#" id="clearTables">Clear tables</a> |
                     <a href="/api/tables">API Table Link</a> |
                     <a href="/api/waitlist">API Wait List</a> |
                     <a href="https://github.com/merrazquin/hot-restaurant">GitHub Repo</a>
@@ -72,26 +72,38 @@
 
         <script>
             $(function () {
-                $.getJSON('/api/tables', function (result) {
-                    result.forEach((table, index) => {
-                        $('#reservations').append(
-                            formatTable(index + 1, table.name)
-                        );
-                    });
-                });
+                updateUI();
 
-                $.getJSON('/api/waitlist', function (result) {
-                    result.forEach((table, index) => {
-                        $('#waitlist').append(
-                            formatTable(index + 1, table.name)
-                        );
-                    });
-                });
+                $('#clearTables').click(() => {
+                    $.post('/api/clear', null, data => { 
+                        updateUI(); 
+                        console.log('cleared')
+                    })
+                })
 
+                function updateUI() {
+                    $.getJSON('/api/tables', function (result) {
+                        $('#reservations').empty()
+                        result.forEach((table, index) => {
+                            $('#reservations').append(
+                                formatTable(index + 1, table.name)
+                            );
+                        });
+                    });
+
+                    $.getJSON('/api/waitlist', function (result) {
+                        $('#waitlist').empty()
+                        result.forEach((table, index) => {
+                            $('#waitlist').append(
+                                formatTable(index + 1, table.name)
+                            );
+                        });
+                    });
+                }
                 function formatTable(index, name) {
                     return $('<div>').addClass('well')
-                        .append($('<h2>').append($('<span>').addClass('label label-primary').text(index)
-                            .append(' | ' + name))
+                        .append($('<h2>').append($('<span>').addClass('label label-primary').text(index),
+                        $('<span>').text(' | ' + name))
                         );
                 }
 
