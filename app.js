@@ -9,11 +9,31 @@ var PORT = 3700;
 // Sets up the Express app to handle data parsing
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
-
-
+    
 // Data 
-    // Table Array: Table_Num, Name, Email, Phone, UniqueID
-
+    var tables = [
+      {
+        table_key_ID: 1,
+        name: "testuser1",
+        email: "donotreply@gmail.com",
+        phone: "123-45-123",
+        uniqueID: "me"
+      },
+      {
+        table_key_ID: 2,
+        name: "testuser2",
+        email: "donotreply@gmail.com",
+        phone: "789-12-2365",
+        uniqueID: "ccccc"
+      },
+      {
+        table_key_ID: 3,
+        name: "testuser3",
+        phone: "dontreply@gmail.com",
+        phone: "553-45-6989",
+        uniqueID: "fhdfhdjd"
+      }
+    ];
 
 
 
@@ -56,17 +76,12 @@ var PORT = 3700;
   
   // Create New Tables - takes in JSON input
   app.post("/api/tables", function(req, res) {
-    // req.body hosts is equal to the JSON post sent from the user
-    // This works because of our body-parser middleware
+
     var newtable = req.body;
-  
-    // Using a RegEx Pattern to remove spaces from newtable
-    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-    newtable.routeName = table.name.replace(/\s+/g, "").toLowerCase();
 
     console.log(newtable);
   
-    tabless.push(newtable);
+    tables.push(newtable);
   
     res.json(newtable);
   });
