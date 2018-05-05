@@ -38,33 +38,7 @@
                 Current Reservations
             </div>
             <div class="card-body" id="reservations">
-                <!-- dummy data -->
-                <div class="well">
-                    <h2>
-                        <span class="label label-primary">1</span> | Name
-                    </h2>
-                </div>
-                <div class="well">
-                    <h2>
-                        <span class="label label-primary">2</span> | Name
-                    </h2>
-                </div>
-                <div class="well">
-                    <h2>
-                        <span class="label label-primary">3</span> | Name
-                    </h2>
-                </div>
-                <div class="well">
-                    <h2>
-                        <span class="label label-primary">4</span> | Name
-                    </h2>
-                </div>
-                <div class="well">
-                    <h2>
-                        <span class="label label-primary">5</span> | Name
-                    </h2>
-                </div>
-                <!-- end dummy data -->
+
             </div>
         </div>
         <div class="card">
@@ -72,28 +46,7 @@
                 Waiting List
             </div>
             <div class="card-body" id="waitlist">
-                <!-- dummy data -->
-                <div class="well">
-                    <h2>
-                        <span class="label label-primary">1</span> | Name
-                    </h2>
-                </div>
-                <div class="well">
-                    <h2>
-                        <span class="label label-primary">2</span> | Name
-                    </h2>
-                </div>
-                <div class="well">
-                    <h2>
-                        <span class="label label-primary">3</span> | Name
-                    </h2>
-                </div>
-                <div class="well">
-                    <h2>
-                        <span class="label label-primary">4</span> | Name
-                    </h2>
-                </div>
-                <!-- end dummy data -->
+
             </div>
         </div>
         <footer class="footer">
@@ -115,6 +68,35 @@
             crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+
+
+        <script>
+            $(function () {
+                $.getJSON('/api/tables', function (result) {
+                    result.forEach((table, index) => {
+                        $('#reservations').append(
+                            formatTable(index + 1, table.name)
+                        );
+                    });
+                });
+
+                $.getJSON('/api/waitlist', function (result) {
+                    result.forEach((table, index) => {
+                        $('#waitlist').append(
+                            formatTable(index + 1, table.name)
+                        );
+                    });
+                });
+
+                function formatTable(index, name) {
+                    return $('<div>').addClass('well')
+                        .append($('<h2>').append($('<span>').addClass('label label-primary').text(index)
+                            .append(' | ' + name))
+                        );
+                }
+
+            });
+        </script>
     </div>
 </body>
 
