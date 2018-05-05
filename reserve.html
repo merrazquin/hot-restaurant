@@ -78,12 +78,23 @@
 
     <script>
         $(function () {
-            $("#reservation").submit(function (e) {
+            $("#reservation").submit(submitForm);
+            $("submit").click(submitForm);
+
+            function submitForm(e) {
                 e.preventDefault();
-                
+
                 var formObject = {};
-                ['name', 'email', 'phone', 'uniqueID'].forEach(key => {formObject[key] = $('#' + key).val(); })
-            });
+                ['name', 'email', 'phone', 'uniqueID'].forEach(key => { formObject[key] = $('#' + key).val(); });
+
+                $.post('/api/tables', formObject, data => {
+                    if(data) {
+                        alert('Yay, you reserved a table');
+                    } else {
+                        alert("Sorry, you're on the waiting list");
+                    }
+                });
+            }
         });
     </script>
 </body>
