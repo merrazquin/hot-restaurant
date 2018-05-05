@@ -16,39 +16,37 @@ var PORT = 3700;
 
 
 
-// GET functionality
 
-    // View Current List
-    // view Waitting List
+// Route Handling to send users to the Various Pages
+  app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "home.html"));
+  });
+  
+  app.get("/reserve", function(req, res) {
+    res.sendFile(path.join(__dirname, "reserve.html"));
+  });
 
-// POST functionality
-    // Create a new table
-
-// Routes
-// =============================================================
-
-// Basic route that sends the user first to the AJAX Page
-app.get("/", function(req, res) {
+  app.get("/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
   });
   
-  app.get("/add", function(req, res) {
-    res.sendFile(path.join(__dirname, "reserve.html"));
-  });
-  
-  // Displays all tables
+
+
+  // Displays all tables on the api/tables page
   app.get("/api/tables", function(req, res) {
     return res.json(tables);
   });
   
-  // Displays a single table, or returns false
+
+
+  // Displays a single selected table, or returns false
   app.get("/api/tables/:table", function(req, res) {
-    var picked = req.params.table;
+    var selectedTable = req.params.table;
   
-    console.log(picked);
+    console.log(selectedTable);
   
     for (var i = 0; i < table.length; i++) {
-      if (picked === table[i].routeName) {
+      if (selectedTable === table[i].routeName) {
         return res.json(table[i]);
       }
     }
@@ -65,7 +63,7 @@ app.get("/", function(req, res) {
     // Using a RegEx Pattern to remove spaces from newtable
     // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
     newtable.routeName = table.name.replace(/\s+/g, "").toLowerCase();
-  
+
     console.log(newtable);
   
     tabless.push(newtable);
