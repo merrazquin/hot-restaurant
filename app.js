@@ -79,6 +79,13 @@ app.get("/api/tables/:table", function (req, res) {
 });
 
 
+// Deletes a specific table by unique ID
+app.delete("/api/tables/:table", req,res => {
+  var target = req.params.uniqueID
+  console.log(target+" bas been deleted")
+})
+
+
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function () {
