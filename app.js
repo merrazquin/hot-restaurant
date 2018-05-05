@@ -63,7 +63,6 @@ app.get("/tables", function (req, res) {
 });
 
 
-
 // Displays a single selected table, or returns false
 app.get("/api/tables/:table", function (req, res) {
   var selectedTable = req.params.uniqueID;

@@ -1,20 +1,20 @@
 var tableData = [
         {
-          name: "testuser1",
+          name: "Cruz Dude",
           email: "donotreply@gmail.com",
-          phone: "123-45-123",
+          phone: "123-453-1233",
           uniqueID: "me"
         },
         {
-          name: "testuser2",
+          name: "Marcela",
           email: "donotreply@gmail.com",
-          phone: "789-12-2365",
+          phone: "789-132-2365",
           uniqueID: "ccccc"
         },
         {
-          name: "testuser3",
+          name: "Craig",
           phone: "dontreply@gmail.com",
-          phone: "553-45-6989",
+          phone: "553-435-6989",
           uniqueID: "fhdfhdjd"
         }
       ];

@@ -1,10 +1,10 @@
 
 var waitData = [
         {
-          name: "waitinguser1",
+          name: "Brandon",
           email: "donotreply@gmail.com",
-          phone: "123-45-123",
-          uniqueID: "waiter"
+          phone: "123-435-123",
+          uniqueID: "waitingGuy"
         }
       ];
 
