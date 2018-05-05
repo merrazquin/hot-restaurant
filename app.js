@@ -61,7 +61,7 @@ var PORT = 3700;
 
   // Displays a single selected table, or returns false
   app.get("/api/tables/:table", function(req, res) {
-    var selectedTable = req.params.table;
+    var selectedTable = req.params.table_key_ID;
   
     console.log(selectedTable);
   
