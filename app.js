@@ -1,10 +1,9 @@
 // constants for requirements
 const express = require("express"),
-  bodyParser = require("body-parser"),
-  path = require("path");
-
-var app = express();
-var PORT = 3700;
+      bodyParser = require("body-parser"),
+      path = require("path"),
+      app = express(),
+      PORT = 3700;
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,8 +43,8 @@ app.post('/api/tables', function (req, res) {
 app.post('/api/clear', function (req, res) {
   tableData = [];
   waitData = [];
-
-  console.log(tableData);
+  console.log("Data Cleared: "+tableData);
+  res.end();
 })
 
 
